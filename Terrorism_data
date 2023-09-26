@@ -1,0 +1,29 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+terrorism_df = pd.read_csv('terrorism_data.csv')
+print(terrorism_df.info())
+print(terrorism_df.isnull().sum())
+print(terrorism_df.describe())
+# Visualize terrorist attacks over time
+plt.figure(figsize=(10, 6))
+sns.histplot(data=terrorism_df, x='iyear', bins=range(1970, 2024, 1), kde=True)
+plt.title('Terrorist Attacks Over Time')
+plt.xlabel('Year')
+plt.ylabel('Number of Attacks')
+plt.xticks(rotation=45)
+plt.show()
+# Visualize attack types
+plt.figure(figsize=(10, 6))
+sns.countplot(data=terrorism_df, y='attacktype1_txt', order=terrorism_df['attacktype1_txt'].value_counts().index)
+plt.title('Types of Terrorist Attacks')
+plt.xlabel('Number of Attacks')
+plt.ylabel('Attack Type')
+plt.show()
+top_10_groups = terrorism_df['gname'].value_counts().head(10)
+plt.figure(figsize=(10, 6))
+sns.barplot(x=top_10_groups.values, y=top_10_groups.index, orient='h')
+plt.title('Top 10 Terrorist Groups')
+plt.xlabel('Number of Attacks')
+plt.ylabel('Terrorist Group')
+plt.show()
