@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-terrorism_df = pd.read_csv('terrorism_data.csv')
+terrorism_df = pd.read_csv('terrorist_data.csv')
 print(terrorism_df.info())
 print(terrorism_df.isnull().sum())
 print(terrorism_df.describe())
